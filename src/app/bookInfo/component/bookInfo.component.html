@@ -9,12 +9,12 @@
         <p>{{data.book.volumeInfo.description}}</p>
         <h5>Editeur : {{data.book.volumeInfo.publisher}}</h5>
         <h6>Nombre de pages : {{data.book.volumeInfo.pageCount}}</h6>
-        <button (click)="saveBook()">Ajouter à ma bibliothèque</button>
+        <button (click)="saveBook(selectedLibrary)">Ajouter à ma bibliothèque</button>
         <button routerLink="/home" >Retourner à la recherche</button>
-        <div *ngFor="let lib of data.links">
-            <h6>
+        <select [(ngModel)]="selectedLibrary">
+            <option *ngFor="let lib of data.links" [value]="lib.libraryName">
                 {{lib.libraryName}}
-            </h6>
-        </div>
+            </option>
+        </select>
     </div>
 </ng-container>
