@@ -1,0 +1,32 @@
+<ng-container *ngIf="data$ | async as data" >
+    <div class="container">
+        <div class="logo">
+            <a routerLink="/">Blog de Livres ...</a>
+        </div>
+
+
+        <ng-container *ngIf="data.currentUser">
+            <div class="user-login-wrapper">
+                <div class="user">
+                    <p>{{data.currentUser.email}}</p>
+                </div>
+                <button (click)="logOut()" class="log-out-button">Log Out</button>
+            </div>
+        </ng-container>
+
+        <ng-container *ngIf="!data.currentUser">
+            
+            <div class="button-wrapper">
+                <button>
+                    <a routerLink="/login">Log In</a>
+                </button>
+                
+                <button>
+                    <a routerLink="/register">Register</a>
+                </button>
+            </div>
+
+        </ng-container>
+    </div>
+    
+</ng-container>

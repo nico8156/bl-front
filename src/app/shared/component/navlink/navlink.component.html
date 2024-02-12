@@ -1,0 +1,19 @@
+<ng-container *ngIf="data$ | async as links" >
+    
+    <div class="container">
+        <div class="library">
+            <a [routerLink]="['/home']" routerLinkActive="active" class="library">Chercher un livre</a>
+        </div>
+        <div *ngFor="let link of links.links" class="linksWrapper">
+            <a 
+            class="library" 
+            [routerLink]="['/bookslib', link.libraryId]" 
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}"
+            queryParamsHandling="merge"
+            >
+                {{link.libraryName}}
+            </a>
+        </div>
+    </div>
+</ng-container>

@@ -1,0 +1,14 @@
+
+<ng-container *ngIf="data$|async as data">
+    <div *ngIf="data.isLoading">
+        <h1>
+            LOADING
+        </h1>
+    </div>
+    <div *ngFor="let item of data.books">
+        <h1>
+            {{item.book.title}}
+        </h1>
+        <img [src]="item.book.imageLinks" alt="">
+    </div>
+</ng-container>
