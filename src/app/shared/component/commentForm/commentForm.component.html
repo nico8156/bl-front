@@ -1,0 +1,6 @@
+<h1>Ecrire un commentaire</h1>
+<form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+    <input type="text" formControlName="title" placeholder="titre de votre commentaire">
+    <textarea class="" formControlName="content" placeholder="votre commentaire..."></textarea>
+    <button type="submit" [disabled]="commentForm.invalid">Write</button>
+</form>

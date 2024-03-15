@@ -1,0 +1,18 @@
+<div class="comment">
+    <div *ngIf="comment.userDto.photo">
+        <div>
+            <img [src]="comment.userDto.photo" alt="profile picture"/>
+        </div>
+    </div>
+    <div class="details">
+        <div class="username">
+            {{comment.userDto.username}}
+        </div>
+        <div class="title">
+            {{comment.title}}
+        </div>
+        <div class="main">
+            {{comment.content}}
+        </div>
+    </div>
+</div>

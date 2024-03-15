@@ -6,6 +6,7 @@ import { FormatedBookForDb } from "../types/formatedBookForDb";
 import { Store } from "@ngrx/store";
 import { selectCurrentUser } from "../../auth/store/reducers";
 import { PersistanceService } from "../../shared/services/persistance.service";
+import { SaveBookRequestInterface } from "../types/saveBookRequest.interface";
 
 @Injectable({
     providedIn: 'root',
@@ -20,26 +21,9 @@ export class BookInfoService{
         const url = `https://www.googleapis.com/books/v1/volumes/${slug}?fields=(id,volumeInfo/title,volumeInfo/authors,volumeInfo/publisher,volumeInfo/description,volumeInfo/pageCount,%20volumeInfo/imageLinks)`
         return this.http.get<any>(url)
     }
-    saveBookToDb(book:BookInterface){
-        const user = this.store.select(selectCurrentUser)
-        const libraryId = localStorage.getItem('selectedLibrary')
-        
-        
-        const url = `http://localhost:8080/api/book/user/40/library/7`
-        const bookToSave = this.FormatBookForDB(book)
-        this.http.post<FormatedBookForDb>(url, bookToSave)
+    saveBookToDb(data:SaveBookRequestInterface): Observable<any>{    
+        const url = `http://localhost:8080/api/book/user/${data.userId}/library/${data.libraryId}`
+        return this.http.post<FormatedBookForDb>(url, data.book)
             
-    }
-    FormatBookForDB(book: BookInterface): FormatedBookForDb{
-        let item
-        return item = {
-            googleId: book.id,
-            title: book.volumeInfo.title,
-            authors: book.volumeInfo.authors?.toString(),
-            publisher: book.volumeInfo.publisher,
-            description: book.volumeInfo.description,
-            pageCount: book.volumeInfo.pageCount,
-            imageLinks: book.volumeInfo.imageLinks?.thumbnail
-        }
     }
 }

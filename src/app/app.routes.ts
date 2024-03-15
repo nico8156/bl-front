@@ -22,6 +22,12 @@ export const routes: Route[] = [
 
     },
     {
+      path: 'user/:username',
+      canActivate:[AuthGuardService],
+      loadChildren: () =>
+        import('./user/user.routes').then((m) => m.routes),
+    },
+    {
       path: 'bookInfo/:slug',
       canActivate:[AuthGuardService],
       loadChildren: () =>
@@ -32,5 +38,11 @@ export const routes: Route[] = [
       canActivate:[AuthGuardService],
       loadChildren: () =>
         import('./booksByLibrary/booksByLibrary.routes').then((m) => m.routes),
+    },
+    {
+      path: 'bookblog/:bookId',
+      canActivate:[AuthGuardService],
+      loadChildren: () =>
+        import('./bookBlog/bookBlog.routes').then((m) => m.routes),
     },
 ];

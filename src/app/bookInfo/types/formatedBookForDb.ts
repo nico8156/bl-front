@@ -1,9 +1,9 @@
 export interface FormatedBookForDb{
-      googleId:String
-      title:String
-      authors?:String
-      publisher?:String
-      description?:String
+      googleId:string
+      title:string
+      authors?:string
+      publisher?:string
+      description?:string
       pageCount?:number
-      imageLinks?:String
+      imageLinks?:string
 }

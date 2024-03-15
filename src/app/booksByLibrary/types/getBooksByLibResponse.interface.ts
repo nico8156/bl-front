@@ -3,9 +3,7 @@ import { LinksResponseInterface } from "../../shared/component/navlink/types/lin
 
 
 export interface GetBooksByLibResponseInterface{
-
-        libraryBookId: number,
-        library: LinksResponseInterface    
-        book: FormatedBookForDb
+  
+        book: FormatedBookForDb[]
 
 }

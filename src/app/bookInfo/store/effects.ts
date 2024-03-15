@@ -27,3 +27,26 @@ export const getBookInfoEffect = createEffect(
     },
     {functional: true}
 )
+export const saveBookToDbEffect = createEffect(
+    (
+      actions$ = inject(Actions),
+      bookInfoService = inject(BookInfoService),
+    ) => {
+      return actions$.pipe(
+        ofType(bookInfoActions.saveBookToDB),
+        switchMap(({request}) => {
+          return bookInfoService.saveBookToDb(request).pipe(
+            map(() => {
+              return bookInfoActions.saveBookToDBSuccess()
+            }),
+            catchError(() => {
+              return of(
+                bookInfoActions.saveBookToDBFailure()
+              )
+            })
+          )
+        })
+      )
+    },
+    {functional: true}
+  )

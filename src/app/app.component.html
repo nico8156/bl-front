@@ -1,10 +1,5 @@
-<div *ngIf="user$">
-    <bl-navbar></bl-navbar>
-    
-</div>
-<div *ngIf="user$">
+<bl-navbar></bl-navbar>
+<div *ngIf="user$|async">
     <bl-navlink></bl-navlink>
 </div>
-
-
 <router-outlet></router-outlet>

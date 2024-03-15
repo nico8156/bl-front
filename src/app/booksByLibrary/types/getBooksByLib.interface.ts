@@ -1,3 +1,4 @@
+import { FormatedBookForDb } from "../../bookInfo/types/formatedBookForDb"
 import { GetBooksResponseInterface } from "../../home/types/getBooksResponse.interface"
 import { GetBooksByLibResponseInterface } from "./getBooksByLibResponse.interface"
 
@@ -5,5 +6,5 @@ import { GetBooksByLibResponseInterface } from "./getBooksByLibResponse.interfac
 export interface BooksByLibStateInterface{
     isLoading: boolean
     error: string | null
-    data: GetBooksByLibResponseInterface[] | null
+    data: FormatedBookForDb[] | null
 }

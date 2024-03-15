@@ -3,9 +3,10 @@ import { Injectable, inject } from "@angular/core";
 import { Observable, map, of } from "rxjs";
 import { RegisterRequestInterface } from "../types/registerRequest.interface";
 import { CurrentUserInterface } from "../../shared/types/currentUser.interface";
-import { AuthResponseInterface } from "../types/authResponse.inteface";
+
 import { LoginRequestInterface } from "../types/loginRequestInterface";
-import { PersistanceService } from "../../shared/services/persistance.service";
+import { UpdateRequestInterface } from "../types/updateRequest.interface";
+
 
 
 @Injectable({
@@ -14,7 +15,6 @@ import { PersistanceService } from "../../shared/services/persistance.service";
 
 export class AuthService{
   http= inject(HttpClient)
-  persistance = inject(PersistanceService)
 
     login(request: LoginRequestInterface): Observable<CurrentUserInterface> {
       const url = 'http://localhost:8080/api/auth/login'
@@ -38,7 +38,22 @@ export class AuthService{
       }
 
       getCurrentUser(): Observable<CurrentUserInterface> {
-        return of(this.persistance.get('user') as CurrentUserInterface)
+        const url = 'http://localhost:8080/api/auth/user'
+        return this.http
+          .get<any>(url)
+          .pipe(map((response) => {
+            console.log(response)
+            return response
+          }))
         
+      }
+      update(data: UpdateRequestInterface): Observable<CurrentUserInterface> {
+        const url = 'http://localhost:8080/api/auth/update'
+        return this.http
+          .patch<any>(url, data.user)
+          .pipe(map((response) => {
+            console.log(response)
+            return response
+          }))
       }
 }

@@ -9,7 +9,32 @@ export const authInterceptor: HttpInterceptorFn = (request, next) => {
     return next(request)
   }
 
+  if (request.url.includes('/api/auth/user')) {
+    request = request.clone({
+      setHeaders: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+  
+  }
+  if (request.url.includes('/api/auth/update')) {
+    request = request.clone({
+      setHeaders: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+  
+  }
+
   if (!request.url.includes('/api/auth')) {
+    request = request.clone({
+      setHeaders: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+  
+  }
+  if (request.url.includes('http://localhost:8080/api/library/save')) {
     request = request.clone({
       setHeaders: {
         Authorization: `Bearer ${token}`

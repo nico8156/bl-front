@@ -1,14 +1,41 @@
-<div>
+<div class="container">
+    <h1>S'enregistrer</h1>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <fieldset>
-            <input type="text" placeholder="Username" formControlName="username">
+        <fieldset [class.correct-border]="form.get('username')?.valid && form.get('username')?.dirty">
+            <input type="text" placeholder="Username" formControlName="username" (blur)="isUserInDb()">
         </fieldset>
-        <fieldset>
+        <div>
+            <small *ngIf="form.get('username')?.errors?.['required'] && form.get('username')?.touched">
+                *Username is a required field.
+            </small>
+            <small *ngIf="form.get('username')?.errors?.['minlength'] && form.get('username')?.touched">
+                *Username field must have a length of at least 2 characters.
+            </small>
+        </div>
+        <fieldset [class.correct-border]="form.get('email')?.valid && form.get('email')?.dirty">
             <input type="email" placeholder="Email" formControlName="email">
         </fieldset>
-        <fieldset>
+        <div>
+            <small *ngIf="form.get('email')?.errors && form.get('email')?.touched">
+                *Email is a required field.
+            </small>
+        </div>
+        <fieldset [class.correct-border]="form.get('password')?.valid && form.get('password')?.dirty">
             <input type="password" placeholder="Password" formControlName="password">
         </fieldset>
-        <button type="submit">S'enregistrer</button>
+        <div>
+            <small *ngIf="form.get('password')?.errors && form.get('password')?.touched">
+                *Password field must have a length of at least 6 characters.
+            </small>
+        </div>
+        <fieldset [class.correct-border]="form.get('confirmPassword')?.valid && form.get('confirmPassword')?.dirty">
+            <input type="password" placeholder="confirmPassword" formControlName="confirmPassword">
+        </fieldset>
+        <div>
+            <small *ngIf="form.get('confirmPassword')?.errors && form.get('confirmPassword')?.touched">
+                *This field must match your password.
+            </small>
+        </div>
+        <button type="submit" [disabled]="!form.valid">S'enregistrer</button>
     </form>
 </div>

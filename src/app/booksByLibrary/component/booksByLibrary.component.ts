@@ -1,5 +1,5 @@
 import { Component, DoCheck, OnInit, inject } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, RouterLink } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { booksByLibActions } from "../store/actions";
 import { combineLatest } from "rxjs";
@@ -9,8 +9,9 @@ import { CommonModule } from "@angular/common";
 @Component({
     selector:'bl-booksLib',
     templateUrl:'./booksByLibrary.html',
+    styleUrl:'./booksByLibrary.component.scss',
     standalone:true,
-    imports: [CommonModule]
+    imports: [CommonModule, RouterLink]
 })
 
 export class BooksByLibraryComponent implements OnInit{

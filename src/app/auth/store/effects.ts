@@ -8,28 +8,31 @@ import { CurrentUserInterface } from "../../shared/types/currentUser.interface"
 import { HttpErrorResponse } from "@angular/common/http"
 import { Router } from "@angular/router"
 import { LinksService } from "../../shared/component/navlink/services/links.service"
+import { Store } from "@ngrx/store"
+import { selectCurrentUser } from "./reducers"
 
 
 export const getCurrentUserEffect = createEffect(
   (
     actions$ = inject(Actions),
     authService = inject(AuthService),
-    persistanceService = inject(PersistanceService)
+    store = inject(Store)
   ) => {
     return actions$.pipe(
       ofType(authActions.getCurrentUser),
       switchMap(() => {
-        const user = persistanceService.get('user')
+        const user = store.select(selectCurrentUser)
 
         if (!user) {
-          return of(authActions.getCurrentUserFailure())
+          return of(authActions.getCurrentUserFailure)
         }
         return authService.getCurrentUser().pipe(
           map((currentUser: CurrentUserInterface) => {
             return authActions.getCurrentUserSuccess({currentUser})
           }),
-          catchError(() => {
-            return of(authActions.getCurrentUserFailure())
+          catchError((errors) => {
+            console.log(errors.status)
+            return of(authActions.getCurrentUserFailure(errors))
           })
         )
       })
@@ -82,6 +85,7 @@ export const registerEffect = createEffect(
       actions$ = inject(Actions),
       authService = inject(AuthService),
       persistanceService = inject(PersistanceService)
+
     ) => {
       return actions$.pipe(
         ofType(authActions.login),
@@ -89,7 +93,6 @@ export const registerEffect = createEffect(
           return authService.login(request).pipe(
             map((currentUser: CurrentUserInterface) => {
               persistanceService.set('accessToken', currentUser.jwt)
-              persistanceService.set('user', currentUser)
               return authActions.loginSuccess({currentUser})
             }),
             catchError((errorResponse: HttpErrorResponse) => {
@@ -109,6 +112,42 @@ export const registerEffect = createEffect(
     (actions$ = inject(Actions), router = inject(Router)) => {
       return actions$.pipe(
         ofType(authActions.loginSuccess),
+        tap(() => {
+          router.navigateByUrl('/home')
+        })
+      )
+    },
+    {functional: true, dispatch: false}
+  )
+  export const updateEffect = createEffect(
+    (
+      actions$ = inject(Actions),
+      authService = inject(AuthService),
+    ) => {
+      return actions$.pipe(
+        ofType(authActions.update),
+        switchMap(({request}) => {
+          return authService.update(request).pipe(
+            map((currentUser: CurrentUserInterface) => {
+              return authActions.updateSuccess({currentUser})
+            }),
+            catchError((errorResponse: HttpErrorResponse) => {
+              return of(
+                authActions.updateFailure({
+                  errors: errorResponse.error.errors,
+                })
+              )
+            })
+          )
+        })
+      )
+    },
+    {functional: true}
+  )
+  export const redirectAfterUpdateEffect = createEffect(
+    (actions$ = inject(Actions), router = inject(Router)) => {
+      return actions$.pipe(
+        ofType(authActions.updateSuccess),
         tap(() => {
           router.navigateByUrl('/home')
         })

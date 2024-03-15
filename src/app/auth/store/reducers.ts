@@ -5,7 +5,7 @@ import { authActions } from "./actions";
 const initialState: AuthStateInterface = {
     isSubmitting: false,
     isLoading: false,
-    currentUser: undefined,
+    currentUser: null,
     validationErrors: null,
   }
 
@@ -51,10 +51,11 @@ const authFeature = createFeature({
         isLoading: false,
         currentUser: action.currentUser,
         })),
-        on(authActions.getCurrentUserFailure, (state) => ({
+        on(authActions.getCurrentUserFailure, (state,action) => ({
         ...state,
         isLoading: false,
         currentUser: null,
+        validationErrors:action.errors
         })),
     )
 })

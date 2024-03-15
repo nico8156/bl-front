@@ -1,0 +1,50 @@
+<div class="container" *ngIf="data$|async as data">
+    <h1>Actualiser son Profile</h1>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <fieldset [class.correct-border]="form.get('username')?.valid && form.get('username')?.dirty">
+            <input type="text" placeholder="Username" formControlName="username" (blur)="isUserInDb()">
+        </fieldset>
+        <div>
+            <small *ngIf="form.get('username')?.errors?.['required'] && form.get('username')?.touched">
+                *Username is a required field.
+            </small>
+            <small *ngIf="form.get('username')?.errors?.['minlength'] && form.get('username')?.touched">
+                *Username field must have a length of at least 2 characters.
+            </small>
+        </div>
+        <fieldset [class.correct-border]="form.get('photo')?.valid && form.get('photo')?.dirty">
+            <input type="text" placeholder="Photo" formControlName="photo" >
+        </fieldset>
+        <div>
+            <small *ngIf="form.get('photo')?.errors?.['minlength'] && form.get('photo')?.touched">
+                *Entrez une URL valide.
+            </small>
+        </div>
+        <button type="submit" [disabled]="!form.valid">Mettre à jour</button>
+    </form>
+    <h1>Gérer ses bibliothèques</h1>
+    <div class="manageLink-container">
+        <div *ngIf="data.links" class="links-container">
+            <div *ngFor="let link of data.links" class="link">
+                <h3>{{link.libraryName}}</h3>
+                <div class="action">
+                    <button (click)="onEdit(link)">Editer</button>
+                    <button (click)="onDelete(link.libraryId)">Supprimer</button>
+                </div>
+            </div>
+        </div>
+        <div class="link-form">
+            <form [formGroup]="linkForm" (ngSubmit)="onSubmitFormLink()">
+                <fieldset [class.correct-border]="linkForm.get('linkName')?.valid && linkForm.get('linkName')?.dirty">
+                    <input type="text" placeholder="Nom de votre bibliothèque" formControlName="linkName" >
+                </fieldset>
+                <div>
+                    <small *ngIf="linkForm.get('linkName')?.errors?.['minlength'] && linkForm.get('linkName')?.touched">
+                        *Entrez un nom de bibliothèque valide.
+                    </small>
+                </div>
+                <button type="submit"></button>
+            </form>
+        </div>
+    </div>
+</div>

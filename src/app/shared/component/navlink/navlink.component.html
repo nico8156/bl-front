@@ -2,7 +2,7 @@
     
     <div class="container">
         <div class="library">
-            <a [routerLink]="['/home']" routerLinkActive="active" class="library">Chercher un livre</a>
+            <a [routerLink]="['/home']" routerLinkActive="active" class="library">Chercher</a>
         </div>
         <div *ngFor="let link of links.links" class="linksWrapper">
             <a 
@@ -15,5 +15,20 @@
                 {{link.libraryName}}
             </a>
         </div>
+        <div>
+            <button (click)="toggleCreate()">Creer une bibliothèque</button>
+        </div>
     </div>
+</ng-container>
+<ng-container *ngIf="creatingLib">
+<div  class="form-container">
+    <h1>Créer votre bibliothèque</h1>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <fieldset>
+            <input type="text" placeholder="Le nom de votre bibliothèque" formControlName="name">
+        </fieldset>
+        <button type="submit">Créer</button>
+    </form>
+</div>
+
 </ng-container>

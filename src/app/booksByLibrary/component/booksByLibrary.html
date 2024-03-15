@@ -1,14 +1,17 @@
 
-<ng-container *ngIf="data$|async as data">
+<ng-container *ngIf="data$|async as data" class="container">
     <div *ngIf="data.isLoading">
         <h1>
             LOADING
         </h1>
     </div>
-    <div *ngFor="let item of data.books">
-        <h1>
-            {{item.book.title}}
-        </h1>
-        <img [src]="item.book.imageLinks" alt="">
+    <div class="library-container">
+        <div *ngIf="data.books?.length == 0">
+            <h1>Votre bibliothèque est vide ...</h1>
+            <h2>Vous pouvez ajouter un livre !</h2>
+        </div>
+        <div *ngFor="let item of data.books" [routerLink]="['/bookblog',item.googleId]" class="book">
+            <img [src]="item.imageLinks" alt="">
+        </div>
     </div>
 </ng-container>

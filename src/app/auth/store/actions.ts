@@ -3,6 +3,7 @@ import { RegisterRequestInterface } from "../types/registerRequest.interface";
 import { CurrentUserInterface } from "../../shared/types/currentUser.interface";
 import { BackendErrorsInterface } from "../../shared/types/backendErrors.interface";
 import { LoginRequestInterface } from "../types/loginRequestInterface";
+import { UpdateRequestInterface } from "../types/updateRequest.interface";
 
 export const authActions = createActionGroup({
     source:'auth',
@@ -17,6 +18,10 @@ export const authActions = createActionGroup({
 
         'Get current user': emptyProps(),
         'Get current user success': props<{currentUser: CurrentUserInterface}>(),
-        'Get current user failure': emptyProps(),
+        'Get current user failure': props<{errors: string}>(),
+
+        'Update': props<{request: UpdateRequestInterface}>(),
+        'Update success': props<{currentUser: CurrentUserInterface}>(),
+        'Update failure': props<{errors: BackendErrorsInterface}>(),
     }
 })

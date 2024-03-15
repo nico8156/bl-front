@@ -5,6 +5,7 @@ import { BooksByLibraryService } from "../service/booksByLibrary.service"
 import { booksByLibActions } from "./actions"
 import { GetBooksResponseInterface } from "../../home/types/getBooksResponse.interface"
 import { GetBooksByLibResponseInterface } from "../types/getBooksByLibResponse.interface"
+import { FormatedBookForDb } from "../../bookInfo/types/formatedBookForDb"
 
 export const getBooksByLibEffect = createEffect(
     (actions$ = inject(Actions), booksByLibService = inject(BooksByLibraryService)) => {
@@ -12,7 +13,7 @@ export const getBooksByLibEffect = createEffect(
         ofType(booksByLibActions.getBooksByLib),
         switchMap(({libraryId}) => {
           return booksByLibService.fetchBooksByLib(libraryId).pipe(
-            map((data: GetBooksByLibResponseInterface[]) => {
+            map((data: FormatedBookForDb[]) => {
               return booksByLibActions.getBooksByLibSuccess({data})
             }),
             catchError(() => {

@@ -21,10 +21,8 @@ export class NavBarComponent{
     })
 
     logOut(){
-        
         localStorage.clear()
         window.location.reload()
-
     }
     
 }

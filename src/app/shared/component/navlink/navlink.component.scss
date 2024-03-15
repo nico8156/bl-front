@@ -3,31 +3,78 @@
     flex-direction: row;
     justify-content: space-around;
     align-items:center;
-    margin-top: 20px;
     border-bottom: 1px solid black;
 }
 .linksWrapper{
-    width: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
-.linksWrapper li{
-    list-style: none;
-
-}
 .library{
     cursor: pointer;
-    padding: 8px 16px;
-    border-radius: 8px;
+    padding: 10px 20px;
+    border-radius: 5px;
 }
 .library:hover{
-    background-color: gray;
-    color: white;
+    background-color: black;
+    color: greenyellow;
+    text-decoration: underline;
     transition-duration: 300ms;
 }
 .active{
-    background-color: gray;
-    color: white;
+    background-color: black;
+    color: greenyellow;
+    border-radius: 0px;
 }
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.form-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+h1{
+    text-decoration: underline;
+    font-family: monospace;
+}
+
+form{
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    button{
+        border-radius: 5px;
+        padding: 20px 25px;
+    }
+    button:hover{
+        background-color: darkgrey;
+        color: greenyellow;
+        transition-duration: 250ms;
+    }
+}
+fieldset{
+    border-radius: 5px;
+    padding: 10px 35px;
+}
+fieldset.correct-border{
+    border-right: 5px solid greenyellow;
+    transition-duration: 250ms;
+}
+input{
+    padding: 10px 25px;
+    border-color: transparent;
+    width: 80%;
+}
+input:focus{
+    outline: none;
+    border-color: greenyellow;
+    transition-duration: 250ms;
+}
+

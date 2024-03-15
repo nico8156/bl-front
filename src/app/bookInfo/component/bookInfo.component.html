@@ -1,20 +1,33 @@
 <ng-container *ngIf="data$|async as data">
-    <h1 *ngIf="data.isLoading">LOADING</h1>
-    <div *ngIf="data.book">
-        <div *ngIf="data.book.volumeInfo.imageLinks">
-            <img src="{{data.book.volumeInfo.imageLinks.thumbnail}}" alt="">
+    
+        <h1 *ngIf="data.isLoading">LOADING</h1>
+        <div *ngIf="data.book">
+            <div class="container">
+                <div class="couverture">
+                    <div *ngIf="data.book.volumeInfo.imageLinks" class="img-container">
+                        <img src="{{data.book.volumeInfo.imageLinks.thumbnail}}" alt="">
+                    </div>
+                </div>
+                <div class="infos">
+                    <h1>{{data.book.volumeInfo.title}}</h1>
+                    <h2>{{data.book.volumeInfo.authors}}</h2>
+                    <p>{{data.book.volumeInfo.description | cleanText}}</p>
+                    <h5>Editeur : {{data.book.volumeInfo.publisher}}</h5>
+                    <h6>Nombre de pages : {{data.book.volumeInfo.pageCount}}</h6>
+                    <div class="controls">
+                        <div class="save-controls">
+                            <button (click)="saveBook(selectedLibrary)">Ajouter à ma bibliothèque</button>
+                            <select [(ngModel)]="selectedLibrary">
+                                <option value="" disabled selected>Choisissez une bibliothèque</option>
+                                <option *ngFor="let lib of data.links" [value]="lib.libraryName">
+                                    {{lib.libraryName}}
+                                </option>
+                            </select>
+                        </div>
+                        <button routerLink="/home" >Retourner à la recherche</button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <h1>{{data.book.volumeInfo.title}}</h1>
-        <h2>{{data.book.volumeInfo.authors}}</h2>
-        <p>{{data.book.volumeInfo.description}}</p>
-        <h5>Editeur : {{data.book.volumeInfo.publisher}}</h5>
-        <h6>Nombre de pages : {{data.book.volumeInfo.pageCount}}</h6>
-        <button (click)="saveBook(selectedLibrary)">Ajouter à ma bibliothèque</button>
-        <button routerLink="/home" >Retourner à la recherche</button>
-        <select [(ngModel)]="selectedLibrary">
-            <option *ngFor="let lib of data.links" [value]="lib.libraryName">
-                {{lib.libraryName}}
-            </option>
-        </select>
-    </div>
+    
 </ng-container>

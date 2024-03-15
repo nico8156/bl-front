@@ -18,6 +18,3 @@ export interface LinksResponseInterface{
     },
     libraryName: string
 }
-export interface LinksResponseInterfaceFinal {
-    data: LinksResponseInterface[]
-}

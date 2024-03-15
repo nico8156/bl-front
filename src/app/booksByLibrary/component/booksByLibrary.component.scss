@@ -1,0 +1,12 @@
+.library-container{
+    
+    margin: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.book:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+    transition-duration: 250ms;
+}

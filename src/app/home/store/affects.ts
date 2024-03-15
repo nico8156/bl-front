@@ -10,12 +10,8 @@ export const getBooksEffect = createEffect(
       return actions$.pipe(
         ofType(booksActions.getBooks),
         switchMap(({url}) => {
-
-          console.log(url)
-          console.log('switch')
           return homeService.fetchLivres(url).pipe(
             map((books: GetBooksResponseInterface) => {
-              console.log('dans return')
               return booksActions.getBooksSuccess({books})
             }),
             catchError((e) => {

@@ -7,6 +7,7 @@ import { authActions } from "../../store/actions";
 @Component({
     selector:'bl-login',
     templateUrl:'./login.component.html',
+    styleUrl:'./login.component.scss',
     standalone: true,
     imports:[ReactiveFormsModule]
 })
