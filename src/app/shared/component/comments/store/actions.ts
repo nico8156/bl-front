@@ -5,7 +5,7 @@ import { CreateCommentResponseInterface } from "../types/createCommentResponse.i
 export const commentsActions = createActionGroup({
     source: 'Comments',
     events: {
-        'Create Comment': props<{request: CreateCommentRequestInterface, id:number, googleId: string}>(),
+        'Create Comment': props<{request: CreateCommentRequestInterface, googleId: string}>(),
         'Create Comment success': props<{comment: CreateCommentResponseInterface}>(),
         'Create Comment failure': emptyProps(),
 

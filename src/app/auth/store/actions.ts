@@ -4,6 +4,7 @@ import { CurrentUserInterface } from "../../shared/types/currentUser.interface";
 import { BackendErrorsInterface } from "../../shared/types/backendErrors.interface";
 import { LoginRequestInterface } from "../types/loginRequestInterface";
 import { UpdateRequestInterface } from "../types/updateRequest.interface";
+import { HttpErrorResponse } from "@angular/common/http";
 
 export const authActions = createActionGroup({
     source:'auth',
@@ -14,11 +15,11 @@ export const authActions = createActionGroup({
 
         'Login': props<{request: LoginRequestInterface}>(),
         'Login success': props<{currentUser: CurrentUserInterface}>(),
-        'Login failure': props<{errors: BackendErrorsInterface}>(),
+        'Login failure': props<{errors: HttpErrorResponse}>(),
 
         'Get current user': emptyProps(),
         'Get current user success': props<{currentUser: CurrentUserInterface}>(),
-        'Get current user failure': props<{errors: string}>(),
+        'Get current user failure': props<{errors: HttpErrorResponse}>(),
 
         'Update': props<{request: UpdateRequestInterface}>(),
         'Update success': props<{currentUser: CurrentUserInterface}>(),

@@ -14,8 +14,8 @@ export const saveCommentEffect = createEffect(
     ) => {
       return actions$.pipe(
         ofType(commentsActions.createComment),
-        switchMap(({request, id, googleId}) => {
-          return commentsService.saveComment(request, id, googleId).pipe(
+        switchMap(({request, googleId}) => {
+          return commentsService.saveComment(request, googleId).pipe(
             map((comment: CreateCommentResponseInterface) => {
               return commentsActions.createCommentSuccess({comment})
             }),

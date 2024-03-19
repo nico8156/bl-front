@@ -27,7 +27,6 @@ export class BookBlogComponent implements OnInit{
     })
     
     ngOnInit(): void {
-        console.log('slug' , this.slug)
         this.store.dispatch(bookFromDbActions.getBookFromDb({googleId: this.slug}))
     }
 }

@@ -25,3 +25,21 @@ export const getBooksByLibEffect = createEffect(
     },
     {functional: true}
   )
+  export const DeleteBookFromLibEffect = createEffect(
+    (actions$ = inject(Actions), booksByLibService = inject(BooksByLibraryService)) => {
+      return actions$.pipe(
+        ofType(booksByLibActions.deleteBooksFromLib),
+        switchMap(({googleId,libraryId}) => {
+          return booksByLibService.deleteBookFromLib(googleId,libraryId).pipe(
+            map((data: FormatedBookForDb) => {
+              return booksByLibActions.deleteBooksFromLibSuccess({data})
+            }),
+            catchError(() => {
+              return of(booksByLibActions.deleteBooksFromLibFailure)
+            })
+          )
+        })
+      )
+    },
+    {functional: true}
+  )

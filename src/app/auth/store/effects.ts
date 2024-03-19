@@ -10,6 +10,7 @@ import { Router } from "@angular/router"
 import { LinksService } from "../../shared/component/navlink/services/links.service"
 import { Store } from "@ngrx/store"
 import { selectCurrentUser } from "./reducers"
+import { BackendErrorsInterface } from "../../shared/types/backendErrors.interface"
 
 
 export const getCurrentUserEffect = createEffect(
@@ -22,7 +23,6 @@ export const getCurrentUserEffect = createEffect(
       ofType(authActions.getCurrentUser),
       switchMap(() => {
         const user = store.select(selectCurrentUser)
-
         if (!user) {
           return of(authActions.getCurrentUserFailure)
         }
@@ -30,9 +30,8 @@ export const getCurrentUserEffect = createEffect(
           map((currentUser: CurrentUserInterface) => {
             return authActions.getCurrentUserSuccess({currentUser})
           }),
-          catchError((errors) => {
-            console.log(errors.status)
-            return of(authActions.getCurrentUserFailure(errors))
+          catchError((errorResponse: HttpErrorResponse) => {
+            return of(authActions.getCurrentUserFailure({errors: errorResponse}))
           })
         )
       })
@@ -97,9 +96,9 @@ export const registerEffect = createEffect(
             }),
             catchError((errorResponse: HttpErrorResponse) => {
               return of(
-                authActions.loginFailure({
-                  errors: errorResponse.error.errors,
-                })
+                authActions.loginFailure(
+                {errors: errorResponse}  
+                )
               )
             })
           )

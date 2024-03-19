@@ -9,7 +9,7 @@ export const authInterceptor: HttpInterceptorFn = (request, next) => {
     return next(request)
   }
 
-  if (request.url.includes('/api/auth/user')) {
+  if (request.url.includes('http://localhost:8080/api/auth/user')) {
     request = request.clone({
       setHeaders: {
         Authorization: `Bearer ${token}`
@@ -35,6 +35,22 @@ export const authInterceptor: HttpInterceptorFn = (request, next) => {
   
   }
   if (request.url.includes('http://localhost:8080/api/library/save')) {
+    request = request.clone({
+      setHeaders: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+  
+  }
+  if (request.url.includes('http://localhost:8080/api/library')) {
+    request = request.clone({
+      setHeaders: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+  
+  }
+  if (request.url.includes('http://localhost:8080/api/book/')) {
     request = request.clone({
       setHeaders: {
         Authorization: `Bearer ${token}`

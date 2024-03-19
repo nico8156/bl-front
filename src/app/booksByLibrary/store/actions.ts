@@ -10,5 +10,9 @@ export const booksByLibActions = createActionGroup({
       'Get books by lib': props<{libraryId: number}>(),
       'Get books by lib success': props<{data: FormatedBookForDb[]}>(),
       'Get books by lib failure': emptyProps(),
+
+      'Delete books From lib': props<{googleId: string, libraryId: number}>(),
+      'Delete books From lib success': props<{data: FormatedBookForDb}>(),
+      'Delete books From lib failure': emptyProps(),      
     },
   })

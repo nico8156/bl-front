@@ -34,14 +34,10 @@ export class CommentsComponent implements OnInit{
     })
     
     ngOnInit(): void {
-        
         this.store.dispatch(commentsActions.getComments({googleId: this.googleId}))
-        
-
     }
     
     onSubmit({request}:{request:CreateCommentRequestInterface}){
-
         this.data$.pipe(
             take(1)).
             subscribe(data => {
@@ -50,19 +46,8 @@ export class CommentsComponent implements OnInit{
             const googleId = data.book?.googleId
 
             if(id && googleId){
-                this.store.dispatch(commentsActions.createComment({request, id, googleId}))
-                
+                this.store.dispatch(commentsActions.createComment({request, googleId}))
             }
         })
-        
-    }
-    getReplies(id: number): any{
-        let currentReplies
-        return this.store.select(selectComments).pipe(map(curReplies=> curReplies.filter(curReplie => curReplie.parentId == id)))
-        // this.data$.pipe(
-        //     pluck('comments'),
-        //     map(comments => comments.filter(comment => comment.parentId == id)),
-        //     map(curReplies => { return currentReplies = curReplies}),
-        // )
     }
 }

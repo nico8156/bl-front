@@ -12,9 +12,6 @@ import { CreateCommentRequestInterface } from "../comments/types/createCommentRe
 
 export class CommentFormComponent{
 
-    @Input() initialTitle: string = ''
-    @Input() intialContent: string = ''
-
     @Output()
     handleSubmit = new EventEmitter<CreateCommentRequestInterface>();
 
@@ -22,8 +19,8 @@ export class CommentFormComponent{
     fb = inject(FormBuilder)
 
     commentForm = this.fb.nonNullable.group({
-        title: [this.initialTitle, Validators.required],
-        content: [this.intialContent, Validators.required],
+        title: ['', Validators.required],
+        content: ['', Validators.required],
         parentId: [null]
     })
 

@@ -16,9 +16,9 @@ export class CommentsService{
     http = inject(HttpClient)
     store = inject(Store)
     
-    saveComment(request:CreateCommentRequestInterface ,id: number, googleId: string): Observable<CreateCommentResponseInterface>{
+    saveComment(request:CreateCommentRequestInterface , googleId: string): Observable<CreateCommentResponseInterface>{
 
-        const url = `http://localhost:8080/api/comment/user/${id}/book/${googleId}`
+        const url = `http://localhost:8080/api/comment/book/${googleId}`
 
         return this.http.post<CreateCommentResponseInterface>(url, request)
         

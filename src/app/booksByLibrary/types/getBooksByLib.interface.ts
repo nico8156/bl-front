@@ -6,5 +6,5 @@ import { GetBooksByLibResponseInterface } from "./getBooksByLibResponse.interfac
 export interface BooksByLibStateInterface{
     isLoading: boolean
     error: string | null
-    data: FormatedBookForDb[] | null
+    data: FormatedBookForDb[] | []
 }

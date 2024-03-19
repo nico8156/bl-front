@@ -10,8 +10,22 @@
             <h1>Votre bibliothèque est vide ...</h1>
             <h2>Vous pouvez ajouter un livre !</h2>
         </div>
-        <div *ngFor="let item of data.books" [routerLink]="['/bookblog',item.googleId]" class="book">
-            <img [src]="item.imageLinks" alt="">
+        <div *ngFor="let item of data.books"  class="book">
+            <div class="card-container"[routerLink]="['/bookblog',item.googleId]">
+                <div class="card">
+                    <div class="front">
+                        <img [src]="item.imageLinks" alt="">
+                    </div>
+                    <div class="theback">
+                        <p>{{item.description}}</p>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="controls">
+                <div (click)="deleteBook(item.googleId)" class="button">Effacer</div>
+                <div class="info" [routerLink]="['/bookblog',item.googleId]">x</div>
+            </div>
         </div>
     </div>
 </ng-container>

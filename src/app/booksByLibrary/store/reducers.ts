@@ -6,7 +6,7 @@ import { routerNavigationAction } from "@ngrx/router-store"
 const initialState: BooksByLibStateInterface = {
     isLoading: false,
     error: null,
-    data: null,
+    data: [],
 }
 
 const booksByLibFeature = createFeature({   
@@ -20,7 +20,14 @@ const booksByLibFeature = createFeature({
         data : action.data
       })),
       on(booksByLibActions.getBooksByLibFailure, (state) => ({...state, isLoading: false})),
-      on(routerNavigationAction, () => initialState)
+      on(booksByLibActions.deleteBooksFromLib, (state) => ({...state, isLoading: true})),
+      on(booksByLibActions.deleteBooksFromLibSuccess, (state, action) => ({
+        ...state,
+        isLoading: false,
+        data : [...state.data?.filter(book => book.googleId != action.data.googleId)]
+      })),
+      on(booksByLibActions.deleteBooksFromLibFailure, (state) => ({...state, isLoading: false})),
+      // on(routerNavigationAction, () => initialState) // inutile
     ),
 })
 

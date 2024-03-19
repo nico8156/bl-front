@@ -4,7 +4,6 @@ import { Observable, map } from "rxjs";
 import { BookInterface } from "../../shared/types/book.interface";
 import { FormatedBookForDb } from "../types/formatedBookForDb";
 import { Store } from "@ngrx/store";
-import { selectCurrentUser } from "../../auth/store/reducers";
 import { PersistanceService } from "../../shared/services/persistance.service";
 import { SaveBookRequestInterface } from "../types/saveBookRequest.interface";
 
@@ -22,8 +21,7 @@ export class BookInfoService{
         return this.http.get<any>(url)
     }
     saveBookToDb(data:SaveBookRequestInterface): Observable<any>{    
-        const url = `http://localhost:8080/api/book/user/${data.userId}/library/${data.libraryId}`
-        return this.http.post<FormatedBookForDb>(url, data.book)
-            
+        const url = `http://localhost:8080/api/book/library/${data.libraryId}`
+        return this.http.post<FormatedBookForDb>(url, data.book) 
     }
 }
