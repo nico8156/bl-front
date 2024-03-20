@@ -4,7 +4,7 @@ import { bookInfoActions } from "./actions";
 import { routerNavigationAction } from "@ngrx/router-store";
 
 
-const initialState: BookInfoStateInterface = {
+export const initialState: BookInfoStateInterface = {
     isLoading: false,
     error: null,
     book: null

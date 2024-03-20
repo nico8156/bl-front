@@ -4,7 +4,7 @@ export interface CreateCommentResponseInterface{
      commentId : number
      userDto: UserInfoComment
      googleId : string
-     parentId : number
+     parentId : number|null
      title : string
      content : string
 }

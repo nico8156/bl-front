@@ -2,7 +2,7 @@ import { createFeature, createReducer, on } from "@ngrx/store"
 import { linksActions } from "./actions"
 import { LinksStateInterface } from "../types/linksState.interface"
 
-const initialState : LinksStateInterface = {
+export const initialState : LinksStateInterface = {
     isLoading : false,
     error: null,
     links: []    

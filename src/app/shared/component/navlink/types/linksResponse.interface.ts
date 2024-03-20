@@ -9,7 +9,7 @@ export interface LinksResponseInterface{
         enabled: boolean
         accountNonExpired: boolean
         accountNonLocked: boolean
-        authorities: [
+        authorities?: [
             {
                 authority: string
             }

@@ -64,4 +64,34 @@ describe('commentsReducer',() => {
         }
         expect(state).toEqual(newState)
     })
+    it('create the comment', ()=> {
+        const action = commentsActions.commentsActions.createComment({request: {title:"a title",content:"some content",parentId:null},googleId:"some gg ID"})
+        const state = commentsReducer(initialState, action)
+        const newState = {
+            isLoading: true,
+            error: null,
+            comments: []
+        }
+        expect(state).toEqual(newState)
+    })
+    it('create the comment success', ()=> {
+        const action = commentsActions.commentsActions.createCommentSuccess({comment: {commentId: 78,title:"a title",content:"some content",parentId:null,googleId:"some gg ID", userDto:{username:"user",userRole:'user',photo:"some link"}}})
+        const state = commentsReducer(initialState, action)
+        const newState = {
+            isLoading: false,
+            error: null,
+            comments: [{commentId: 78,title:"a title",content:"some content",parentId:null,googleId:"some gg ID", userDto:{username:"user",userRole:'user',photo:"some link"}}]
+        }
+        expect(state).toEqual(newState)
+    })
+    it('create the commen failure', ()=> {
+        const action = commentsActions.commentsActions.createCommentFailure()
+        const state = commentsReducer(initialState, action)
+        const newState = {
+            isLoading: false,
+            error: null,
+            comments: []
+        }
+        expect(state).toEqual(newState)
+    })
 })
