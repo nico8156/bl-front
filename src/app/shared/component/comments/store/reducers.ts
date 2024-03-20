@@ -2,7 +2,7 @@ import { createFeature, createReducer, on } from "@ngrx/store"
 import { CommentStateInterface } from "../types/createCommentState.interface"
 import { commentsActions } from "./actions"
 
-const initialState: CommentStateInterface = {
+export const initialState: CommentStateInterface = {
     isLoading: false,
     error: null,
     comments: []

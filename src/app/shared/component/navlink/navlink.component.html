@@ -21,14 +21,14 @@
     </div>
 </ng-container>
 <ng-container *ngIf="creatingLib">
-<div  class="form-container">
-    <h1>Créer votre bibliothèque</h1>
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <fieldset>
-            <input type="text" placeholder="Le nom de votre bibliothèque" formControlName="name">
-        </fieldset>
-        <button type="submit">Créer</button>
-    </form>
-</div>
+    <div  class="form-container">
+        <h1>Créer votre bibliothèque</h1>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <fieldset>
+                <input type="text" placeholder="Le nom de votre bibliothèque" formControlName="name">
+            </fieldset>
+            <button type="submit">Créer</button>
+        </form>
+    </div>
 
 </ng-container>

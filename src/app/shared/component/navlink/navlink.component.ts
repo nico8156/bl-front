@@ -2,10 +2,9 @@ import { Component, OnInit, inject } from "@angular/core";
 import { Store, select } from "@ngrx/store";
 import { selectCurrentUser } from "../../../auth/store/reducers";
 import { CommonModule } from "@angular/common";
-import { Observable, combineLatest, lastValueFrom, take } from "rxjs";
+import { combineLatest} from "rxjs";
 import { linksActions } from "./store/actions";
 import { selectLinks } from "./store/reducers";
-import { userInfo } from "os";
 import { RouterLink, RouterLinkActive } from "@angular/router";
 
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
