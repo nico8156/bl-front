@@ -1,17 +1,17 @@
 <div class="comment">
-    <div *ngIf="comment.userDto.photo">
+    <div *ngIf="comment.userDto.photo" data-testid="photo">
         <div>
             <img [src]="comment.userDto.photo" alt="profile picture"/>
         </div>
     </div>
     <div class="details">
-        <div class="username">
+        <div class="username"data-testid="username">
             {{comment.userDto.username}}
         </div>
-        <div class="title">
+        <div class="title" data-testid="title">
             {{comment.title}}
         </div>
-        <div class="main">
+        <div class="main" data-testid="content">
             {{comment.content}}
         </div>
     </div>

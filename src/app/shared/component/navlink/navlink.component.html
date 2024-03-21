@@ -1,6 +1,8 @@
 <ng-container *ngIf="data$ | async as links" >
-    
-    <div class="container">
+    <div *ngIf="links.isLoading" data-testid="loading">
+        <h3>LOADING...</h3>
+    </div>
+    <div class="container" data-testId = "links">
         <div class="library">
             <a [routerLink]="['/home']" routerLinkActive="active" class="library">Chercher</a>
         </div>

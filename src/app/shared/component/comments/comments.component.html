@@ -1,6 +1,6 @@
 <bl-comment-form (handleSubmit)="onSubmit({request:$event})"></bl-comment-form>
-<h1>Ce que les membres en pensent :</h1>
-<div *ngIf="data$|async as data" class="comment-container">
-    <bl-comment *ngFor="let comment of data.comments" [comment]="comment" [username]="data.user?.username">
+<h1 data-testId="title">Ce que les membres en pensent :</h1>
+<div *ngIf="data$|async as comments" class="comment-container" data-testId="comments">
+    <bl-comment *ngFor="let comment of comments.comments" [comment]="comment" [username]="comments.user?.username">
     </bl-comment>
 </div>

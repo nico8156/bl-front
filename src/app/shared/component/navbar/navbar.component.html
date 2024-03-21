@@ -1,11 +1,11 @@
 <ng-container *ngIf="data$ | async as data" >
-    <div class="container">
+    <div class="container" data-testId = "currentUser">
         <div class="logo">
             <a routerLink="/">Blog de Livres ...</a>
         </div>
-        <ng-container *ngIf="data.currentUser">
+        <ng-container *ngIf="data.currentUser"  data-testId = "user">
             <div class="user-login-wrapper">
-                <div>
+                <div >
                     <p [routerLink]="['/user', data.currentUser.username]">{{data.currentUser.username}}</p>
                 </div>
             
@@ -16,7 +16,7 @@
         </ng-container>
 
         <ng-container *ngIf="!data.currentUser">  
-            <div class="button-wrapper">
+            <div class="button-wrapper" data-testId = "buttons">
                 <a routerLink="/login">Log In</a>
                 <a routerLink="/register">Register</a>
             </div>

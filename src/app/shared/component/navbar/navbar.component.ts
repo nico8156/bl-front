@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { Component, OnInit, inject } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { combineLatest } from "rxjs";
 import { selectCurrentUser } from "../../../auth/store/reducers";

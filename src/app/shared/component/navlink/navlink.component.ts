@@ -4,7 +4,7 @@ import { selectCurrentUser } from "../../../auth/store/reducers";
 import { CommonModule } from "@angular/common";
 import { combineLatest} from "rxjs";
 import { linksActions } from "./store/actions";
-import { selectLinks } from "./store/reducers";
+import { selectIsLoading, selectLinks } from "./store/reducers";
 import { RouterLink, RouterLinkActive } from "@angular/router";
 
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
@@ -28,7 +28,8 @@ export class NavLinkComponent implements OnInit{
 
     data$ = combineLatest({
         links : this.store.select(selectLinks),
-        userInfo: this.store.select(selectCurrentUser)
+        userInfo: this.store.select(selectCurrentUser),
+        isLoading: this.store.select(selectIsLoading),
     })
 
     form = this.fb.nonNullable.group({
@@ -53,7 +54,6 @@ export class NavLinkComponent implements OnInit{
             library: this.form.getRawValue()
         }
         this.store.dispatch(linksActions.saveLink({request}))
-
         this.form.reset()
         this.toggleCreate()
     }
