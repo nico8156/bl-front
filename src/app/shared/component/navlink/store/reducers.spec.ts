@@ -134,6 +134,36 @@ describe('linksReducer',() => {
         }
         expect(state).toEqual(newState)
     })
+    it('Delete Link', ()=> {
+        const action = linksActions.linksActions.deleteLink({id:12})
+        const state = linksReducer(initialState2, action)
+        const newState = {
+            isLoading: true,
+            error: null,
+            links: [{libraryId:12,user:{id:12,username:'user',email:'email',password:'password',userRole:'user',enabled:true,accountNonExpired:true,accountNonLocked:true,credentialsNonExpired:true},libraryName:"name"}]
+        }
+        expect(state).toEqual(newState)
+    })
+    it('Delete Link success', ()=> {
+        const action = linksActions.linksActions.deleteLinkSuccess({link:{libraryId:12,user:{id:12,username:'user',email:'email',password:'password',userRole:'user',enabled:true,accountNonExpired:true,accountNonLocked:true,credentialsNonExpired:true},libraryName:"name2"}})
+        const state = linksReducer(initialState2, action)
+        const newState = {
+            isLoading: false,
+            error: null,
+            links: []
+        }
+        expect(state).toEqual(newState)
+    })
+    it('Delete Link failure', ()=> {
+        const action = linksActions.linksActions.deleteLinkFailure()
+        const state = linksReducer(initialState2, action)
+        const newState = {
+            isLoading: false,
+            error: null,
+            links: [{libraryId:12,user:{id:12,username:'user',email:'email',password:'password',userRole:'user',enabled:true,accountNonExpired:true,accountNonLocked:true,credentialsNonExpired:true},libraryName:"name"}]
+        }
+        expect(state).toEqual(newState)
+    })
 
     
 })

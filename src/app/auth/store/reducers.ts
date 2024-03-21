@@ -2,7 +2,7 @@ import { createFeature, createReducer, on } from "@ngrx/store";
 import { AuthStateInterface } from "../types/authState.inteface";
 import { authActions } from "./actions";
 
-const initialState: AuthStateInterface = {
+export const initialState: AuthStateInterface = {
     isSubmitting: false,
     isLoading: false,
     currentUser: null,

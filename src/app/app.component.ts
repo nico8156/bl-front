@@ -18,12 +18,13 @@ import { authActions } from './auth/store/actions';
 })
 export class AppComponent implements OnInit{
   store = inject(Store)
-
+  
+  user$ = this.store.select(selectCurrentUser)
+  
   ngOnInit(): void {
     this.store.dispatch(authActions.getCurrentUser())
   }
 
-  user$ = this.store.select(selectCurrentUser)
 
 
 }
