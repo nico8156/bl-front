@@ -1,10 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
-import { Observable, map } from "rxjs";
+import { Observable } from "rxjs";
 import { BookInterface } from "../../shared/types/book.interface";
 import { FormatedBookForDb } from "../types/formatedBookForDb";
-import { Store } from "@ngrx/store";
-import { PersistanceService } from "../../shared/services/persistance.service";
 import { SaveBookRequestInterface } from "../types/saveBookRequest.interface";
 
 @Injectable({
@@ -12,9 +10,8 @@ import { SaveBookRequestInterface } from "../types/saveBookRequest.interface";
 })
 
 export class BookInfoService{
+
     http = inject(HttpClient)
-    store = inject(Store)
-    service = inject(PersistanceService)
     
     getBookInfo(slug: string): Observable<BookInterface>{
         const url = `https://www.googleapis.com/books/v1/volumes/${slug}?fields=(id,volumeInfo/title,volumeInfo/authors,volumeInfo/publisher,volumeInfo/description,volumeInfo/pageCount,%20volumeInfo/imageLinks)`

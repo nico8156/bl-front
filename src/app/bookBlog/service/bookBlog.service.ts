@@ -14,6 +14,6 @@ export class BookBlogService{
     
     getBookFromDb(googleId: string): Observable<FormatedBookForDb>{
         const url = `http://localhost:8080/api/book/${googleId}`
-        return this.http.get<any>(url)
+        return this.http.get<FormatedBookForDb>(url)
     }
 }

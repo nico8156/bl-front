@@ -6,6 +6,7 @@ import { CurrentUserInterface } from "../../shared/types/currentUser.interface";
 
 import { LoginRequestInterface } from "../types/loginRequestInterface";
 import { UpdateRequestInterface } from "../types/updateRequest.interface";
+import { RegisterResponseInterface } from "../types/registerResponse.interface";
 
 
 
@@ -27,10 +28,10 @@ export class AuthService{
           }))
     }
     
-    register(data: RegisterRequestInterface): Observable<any> {
+    register(data: RegisterRequestInterface): Observable<RegisterResponseInterface> {
         const url = 'http://localhost:8080/api/auth/register'
         return this.http
-          .post<any>(url, data.user)
+          .post<RegisterResponseInterface>(url, data.user)
           .pipe(map((response) => {
             console.log(response)
             return response

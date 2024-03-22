@@ -22,13 +22,18 @@ import { CleanTextPipe } from "../../shared/customPipes/cleanText.pipe";
 })
 
 export class BookInfoComponent implements OnInit{
+    
     route = inject(ActivatedRoute)
     store = inject(Store)
     bookInfoService = inject(BookInfoService)
 
-    slug = this.route.snapshot.paramMap.get('slug') ?? ''
+    slug: string = this.route.snapshot.paramMap.get('slug') ?? ''
 
-    selectedLibrary = ''
+    selectedLibrary: string = ''
+
+    userId:number = 0
+
+    libraryId:number = 0
 
     bookToSendToDb: FormatedBookForDb = {
         googleId : '',
@@ -39,10 +44,6 @@ export class BookInfoComponent implements OnInit{
         imageLinks : '',
         pageCount: 0
     }
-
-    userId = 0
-
-    libraryId = 0
 
     request : SaveBookRequestInterface = {
         book : this.bookToSendToDb,
@@ -57,15 +58,12 @@ export class BookInfoComponent implements OnInit{
         links: this.store.select(selectLinks),
         user: this.store.select(selectCurrentUser)
       })
-
-
     
     ngOnInit(): void {
         this.store.dispatch(bookInfoActions.getBookInfo({slug: this.slug}))
     }
     saveBook(libraryName: string){
         
-        console.log(libraryName)
         this.data$.subscribe((data => {
 
             this.bookToSendToDb = {
@@ -79,11 +77,13 @@ export class BookInfoComponent implements OnInit{
             }
 
             const X = data.links?.filter(lib => lib.libraryName === libraryName) ?? []
+
             this.libraryId = X[0].libraryId
-            console.log(this.libraryId)
+            
             this.userId = data.user?.userId ?? 0
-            console.log(typeof(this.userId))
+            
             const bookToSaveToDb = this.bookToSendToDb
+
             this.request  = {
                 book: bookToSaveToDb,
                 userId: this.userId,
@@ -92,6 +92,7 @@ export class BookInfoComponent implements OnInit{
             
         }))
         const requestBis = this.request
+
         this.store.dispatch(bookInfoActions.saveBookToDB({request:requestBis}))
         
     }

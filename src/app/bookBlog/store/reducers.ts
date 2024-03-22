@@ -2,7 +2,7 @@ import { createFeature, createReducer, on } from "@ngrx/store"
 import { bookFromDbActions } from "./actions"
 import { BookFromDbStateInterface } from "../types/bookFromDbState.interface"
 
-const initialState: BookFromDbStateInterface = {
+export const initialState: BookFromDbStateInterface = {
     isLoading: false,
     error: null,
     book: null
