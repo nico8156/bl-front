@@ -11,7 +11,7 @@ export const AuthGuardService = () => {
     const router = inject(Router)
 
     return store.select(selectCurrentUser).pipe(
-        filter((currentUser) => currentUser !== undefined),
+        filter((currentUser) => currentUser !== null),
         map((currentUser) =>{
             if(!currentUser){
                 router.navigateByUrl('/login')

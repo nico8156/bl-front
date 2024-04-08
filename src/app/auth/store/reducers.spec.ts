@@ -108,18 +108,18 @@ describe('authReducer',()=> {
         expect(state).toEqual(newState)
     })
     it('Get current user failure', ()=> {
-        const errorResponse = new HttpErrorResponse({
-            error: { code: `some code`, message: `some message.` },
-            status: 400,
-            statusText: 'Bad Request',
-         });
-        const action = authActions.authActions.getCurrentUserFailure({errors:errorResponse})
+        // const errorResponse = new HttpErrorResponse({
+        //     error: { code: `some code`, message: `some message.` },
+        //     status: 400,
+        //     statusText: 'Bad Request',
+        //  });
+        const action = authActions.authActions.getCurrentUserFailure()
         const state = authReducer(initialState, action)
         const newState = {
             isSubmitting: false,
             isLoading: false,
             currentUser: null,
-            validationErrors:errorResponse.error
+            validationErrors:null
         }
         expect(state).toEqual(newState)
     })

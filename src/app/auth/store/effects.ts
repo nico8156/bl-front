@@ -13,25 +13,23 @@ import { selectCurrentUser } from "./reducers"
 import { BackendErrorsInterface } from "../../shared/types/backendErrors.interface"
 
 
+
 export const getCurrentUserEffect = createEffect(
   (
     actions$ = inject(Actions),
     authService = inject(AuthService),
-    store = inject(Store)
+    store = inject(Store),
+    persistanceService=inject(PersistanceService)
   ) => {
     return actions$.pipe(
       ofType(authActions.getCurrentUser),
       switchMap(() => {
-        const user = store.select(selectCurrentUser)
-        if (!user) {
-          return of(authActions.getCurrentUserFailure)
-        }
         return authService.getCurrentUser().pipe(
           map((currentUser: CurrentUserInterface) => {
             return authActions.getCurrentUserSuccess({currentUser})
           }),
           catchError((errorResponse: HttpErrorResponse) => {
-            return of(authActions.getCurrentUserFailure({errors: errorResponse}))
+            return of(authActions.getCurrentUserFailure())
           })
         )
       })
@@ -46,12 +44,14 @@ export const registerEffect = createEffect(
     (
       actions$ = inject(Actions),
       authService = inject(AuthService),
+      persistanceService = inject(PersistanceService)
     ) => {
       return actions$.pipe(
         ofType(authActions.register),
         switchMap(({request}) => {
           return authService.register(request).pipe(
             map((currentUser: CurrentUserInterface) => {
+              persistanceService.set('accessToken', currentUser.jwt)
               return authActions.registerSuccess({currentUser})
             }),
             catchError((errorResponse: HttpErrorResponse) => {
@@ -72,7 +72,7 @@ export const registerEffect = createEffect(
       return actions$.pipe(
         ofType(authActions.registerSuccess),
         tap(() => {
-          router.navigateByUrl('/login')
+          router.navigateByUrl('/home')
         })
       )
     },
@@ -154,7 +154,16 @@ export const registerEffect = createEffect(
     },
     {functional: true, dispatch: false}
   )
+  export const logOutEffect = createEffect((actions$ = inject(Actions),router = inject(Router),service= inject(AuthService)) => {
+      return actions$.pipe(ofType(authActions.logOut),
+        tap(action => {
+          service.logOut()
+          router.navigateByUrl('login')
+        })
+      )},
 
+    {functional: true, dispatch: false}, 
+  )
   // export const loadLibForUserAfterLoginEffect = createEffect(
   //   (actions$ = inject(Actions), linksService = inject(LinksService)) => {
   //     return actions$.pipe(

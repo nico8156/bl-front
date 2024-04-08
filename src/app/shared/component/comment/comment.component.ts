@@ -14,5 +14,6 @@ import { CommonModule } from "@angular/common";
 export class CommentComponent {
     
     @Input() comment!:CreateCommentResponseInterface
+    @Input() username: string =''
 
 }

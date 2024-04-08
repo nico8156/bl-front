@@ -1,9 +1,12 @@
-import {Injectable} from '@angular/core'
+import {Injectable, inject} from '@angular/core'
+import { Router } from '@angular/router'
 
 @Injectable({
   providedIn: 'root',
 })
 export class PersistanceService {
+
+  router =inject(Router)
   set(key: string, data: unknown): void {
     try {
       localStorage.setItem(key, JSON.stringify(data))
@@ -21,6 +24,4 @@ export class PersistanceService {
       return null
     }
   }
-
-  
 }

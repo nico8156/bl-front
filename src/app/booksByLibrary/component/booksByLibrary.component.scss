@@ -1,12 +1,15 @@
 .library-container{
-    margin: 10px;
+    flex-wrap: wrap;
+    padding: 50px 200px;
     display: flex;
-    gap: 20px;
+    justify-content: center;
+    gap: 50px;
 }
 
 .book{
-    padding: 10px;
-    background-color: black;
+    padding: 20px;
+    background-color: white;
+    border: 1px solid gainsboro;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
@@ -46,13 +49,16 @@
 .theback{
     padding: 5px;
     position: absolute;
-    font-size: xx-small;
+    font-size: small;
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
     background-color: black;
     color: white;
     transform: rotateY(180deg);
+    p{
+        text-align: center;
+    }
 }
 
 .button{
@@ -69,23 +75,10 @@
     display: block;
     color: greenyellow;
 }
-img{
-    
-}
 .controls{
     width: 100%;
     display: flex;
     gap: 10px;
     justify-content: center;
     align-items: center;
-}
-.info{
-    padding: 10px;
-    border: 1px solid orangered;
-    border-radius: 50px;
-    text-align: center;
-    font-weight: bolder;
-}
-.info:hover{
-    color: orangered;
 }

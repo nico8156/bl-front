@@ -17,14 +17,13 @@
                         <img [src]="item.imageLinks" alt="">
                     </div>
                     <div class="theback">
-                        <p>{{item.description}}</p>
-                        
+                        <p>{{item.title}}</p>
+                        <p>{{item.authors}}</p>
                     </div>
                 </div>
             </div>
             <div class="controls">
                 <div (click)="deleteBook(item.googleId)" class="button">Effacer</div>
-                <div class="info" [routerLink]="['/bookblog',item.googleId]">x</div>
             </div>
         </div>
     </div>

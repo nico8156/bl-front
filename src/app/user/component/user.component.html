@@ -1,5 +1,5 @@
 <div class="container" *ngIf="data$|async as data">
-    <h1>Actualiser son Profile</h1>
+    <h1>Actualiser son Profil</h1>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <fieldset [class.correct-border]="form.get('username')?.valid && form.get('username')?.dirty">
             <input type="text" placeholder="Username" formControlName="username" (blur)="isUserInDb()">
@@ -43,7 +43,7 @@
                         *Entrez un nom de bibliothèque valide.
                     </small>
                 </div>
-                <button type="submit"></button>
+                <button type="submit">Actualiser</button>
             </form>
         </div>
     </div>

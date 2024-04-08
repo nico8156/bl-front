@@ -11,7 +11,7 @@ import { FormatedBookForDb } from "../../bookInfo/types/formatedBookForDb";
 export class BooksByLibraryService{
     http = inject(HttpClient)
 
-    baseUrl = 'http://localhost:8080/api/book/library/'
+    baseUrl = 'http://localhost:9090/api/book/library/'
 
 
     fetchBooksByLib(libraryId: number): Observable<FormatedBookForDb[]>{
@@ -22,7 +22,7 @@ export class BooksByLibraryService{
 
     deleteBookFromLib(googleId: string, libraryId: number):Observable<FormatedBookForDb>{
         console.log("in Delete Book From Lib: " + {googleId} + ", " + {libraryId})
-        const url = `http://localhost:8080/api/book/${googleId}/library/${libraryId}`
+        const url = `http://localhost:9090/api/book/${googleId}/library/${libraryId}`
         return this.http.delete<FormatedBookForDb>(url)
     }
 

@@ -12,7 +12,6 @@ export class HomeService{
     constructor(private http: HttpClient){}
     
     fetchLivres(url: string):Observable<GetBooksResponseInterface> {
-        console.log('dans service books')
         return this.http.get<GetBooksResponseInterface>(url)
     }
 }

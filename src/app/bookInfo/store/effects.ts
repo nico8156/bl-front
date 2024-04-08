@@ -50,3 +50,14 @@ export const saveBookToDbEffect = createEffect(
     },
     {functional: true}
   )
+  export const redirectAfterSaveBookToDbEffect = createEffect(
+    (actions$ = inject(Actions), router = inject(Router)) => {
+      return actions$.pipe(
+        ofType(bookInfoActions.saveBookToDBSuccess),
+        tap(() => {
+          router.navigateByUrl('/home')
+        })
+      )
+    },
+    {functional: true, dispatch: false}
+  )

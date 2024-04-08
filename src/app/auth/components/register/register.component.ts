@@ -31,7 +31,6 @@ export class RegisterComponent{
     }, {validators: CustomValidators.passwordValidator})
 
     onSubmit(){
-        console.log(this.form)
         const request:RegisterRequestInterface = {
             user: this.form.getRawValue()
         }

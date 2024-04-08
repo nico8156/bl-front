@@ -6,8 +6,6 @@ import { CurrentUserInterface } from "../../shared/types/currentUser.interface";
 
 import { LoginRequestInterface } from "../types/loginRequestInterface";
 import { UpdateRequestInterface } from "../types/updateRequest.interface";
-import { RegisterResponseInterface } from "../types/registerResponse.interface";
-
 
 
 @Injectable({
@@ -18,7 +16,7 @@ export class AuthService{
   http= inject(HttpClient)
 
     login(request: LoginRequestInterface): Observable<CurrentUserInterface> {
-      const url = 'http://localhost:8080/api/auth/login'
+      const url = 'http://localhost:9090/api/auth/login'
       
         return this.http
           .post<any>(url, request.user)
@@ -28,10 +26,10 @@ export class AuthService{
           }))
     }
     
-    register(data: RegisterRequestInterface): Observable<RegisterResponseInterface> {
-        const url = 'http://localhost:8080/api/auth/register'
+    register(data: RegisterRequestInterface): Observable<CurrentUserInterface> {
+        const url = 'http://localhost:9090/api/auth/register'
         return this.http
-          .post<RegisterResponseInterface>(url, data.user)
+          .post<CurrentUserInterface>(url, data.user)
           .pipe(map((response) => {
             console.log(response)
             return response
@@ -39,7 +37,7 @@ export class AuthService{
       }
 
       getCurrentUser(): Observable<CurrentUserInterface> {
-        const url = 'http://localhost:8080/api/auth/user'
+        const url = 'http://localhost:9090/api/auth/user'
         return this.http
           .get<any>(url)
           .pipe(map((response) => {
@@ -49,12 +47,15 @@ export class AuthService{
         
       }
       update(data: UpdateRequestInterface): Observable<CurrentUserInterface> {
-        const url = 'http://localhost:8080/api/auth/update'
+        const url = 'http://localhost:9090/api/auth/update'
         return this.http
           .patch<any>(url, data.user)
           .pipe(map((response) => {
             console.log(response)
             return response
           }))
+      }
+      logOut(){
+        localStorage.removeItem('accessToken')
       }
 }

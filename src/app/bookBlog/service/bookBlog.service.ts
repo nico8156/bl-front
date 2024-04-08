@@ -13,7 +13,7 @@ export class BookBlogService{
     http = inject(HttpClient)
     
     getBookFromDb(googleId: string): Observable<FormatedBookForDb>{
-        const url = `http://localhost:8080/api/book/${googleId}`
+        const url = `http://localhost:9090/api/book/${googleId}`
         return this.http.get<FormatedBookForDb>(url)
     }
 }

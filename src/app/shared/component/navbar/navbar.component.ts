@@ -3,7 +3,8 @@ import { Store } from "@ngrx/store";
 import { combineLatest } from "rxjs";
 import { selectCurrentUser } from "../../../auth/store/reducers";
 import { CommonModule } from "@angular/common";
-import { RouterLink } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
+import { authActions } from "../../../auth/store/actions";
 
 @Component({
     selector:'bl-navbar',
@@ -15,14 +16,15 @@ import { RouterLink } from "@angular/router";
 
 export class NavBarComponent{
     store = inject(Store)
+    router = inject(Router)
 
     data$ = combineLatest({
         currentUser: this.store.select(selectCurrentUser)
     })
 
     logOut(){
-        localStorage.clear()
-        window.location.reload()
+       
+       this.store.dispatch(authActions.logOut())
     }
     
 }

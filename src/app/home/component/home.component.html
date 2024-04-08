@@ -1,21 +1,20 @@
 <div class="container">
-    <h1>Ici se fera votre recherche... de livres</h1>
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <input type="text" id="recherche" formControlName="recherche" placeholder="Entrez votre recherche" >
-        <button type="submit">rechercher</button>
+    
+    <form [formGroup]="form">
+        <fieldset>
+            <input type="text" id="recherche" formControlName="recherche" placeholder="Cherchez un livre..." >
+        </fieldset>
     </form>
     <ng-container  *ngIf="data$|async as data">
         <h1 *ngIf="data.isLoading">LOADING</h1>
-        <div *ngIf="data.books">
-            
+        <div *ngIf="data.books" class="table-container">
             <table>
                 <tr>
                     <th>TITLE</th>
                     <th>Auteur</th>
                     <th>Couverture</th>
-                    <th>ACTION</th>
+                    <th></th>
                 </tr>
-
                 <tr *ngFor="let livre of data.books.items">
                     <td> {{livre.volumeInfo.title}} </td>
                     <td> {{livre.volumeInfo.authors ?? 'Non connu' }} </td>
@@ -23,7 +22,7 @@
                         <img [src]="livre.volumeInfo.imageLinks?.thumbnail" alt="">
                     </td>
                     <td>
-                        <a [routerLink]="['/bookInfo',livre.id]">INFO +</a>
+                        <a [routerLink]="['/bookInfo',livre.id]">INFO</a>
                     </td>
                 </tr>
             </table>
