@@ -16,7 +16,7 @@ import { LinksResponseInterface } from "../../shared/component/navlink/types/lin
 @Component({
     selector: 'bl-user',
     templateUrl: './user.component.html',
-    styleUrl:'./user.component.scss',
+    styleUrls:['./user.component.scss'],
     standalone: true,
     imports: [ReactiveFormsModule, CommonModule]
 })

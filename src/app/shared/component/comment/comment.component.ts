@@ -6,7 +6,7 @@ import { CommonModule } from "@angular/common";
 @Component({
     selector:'bl-comment',
     templateUrl: './comment.component.html',
-    styleUrl: './comment.component.scss',
+    styleUrls: ['./comment.component.scss'],
     standalone: true,
     imports: [CommonModule]
 })

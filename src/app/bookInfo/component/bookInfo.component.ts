@@ -16,7 +16,7 @@ import { CleanTextPipe } from "../../shared/customPipes/cleanText.pipe";
 @Component({
     selector:'bl-bookInfo',
     templateUrl:'./bookInfo.component.html',
-    styleUrl:'./bookInfo.component.scss',
+    styleUrls:['./bookInfo.component.scss'],
     standalone: true,
     imports: [CommonModule, RouterLink, FormsModule, CleanTextPipe]
 })
@@ -93,7 +93,7 @@ export class BookInfoComponent implements OnInit{
         }))
         const requestBis = this.request
 
-        this.store.dispatch(bookInfoActions.saveBookToDB({request:requestBis}))
+        this.store.dispatch(bookInfoActions.saveBookToDb({request:requestBis}))
         
     }
 }

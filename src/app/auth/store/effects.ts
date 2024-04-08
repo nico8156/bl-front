@@ -155,7 +155,7 @@ export const registerEffect = createEffect(
     {functional: true, dispatch: false}
   )
   export const logOutEffect = createEffect((actions$ = inject(Actions),router = inject(Router),service= inject(AuthService)) => {
-      return actions$.pipe(ofType(authActions.logOut),
+      return actions$.pipe(ofType(authActions.logout),
         tap(action => {
           service.logOut()
           router.navigateByUrl('login')

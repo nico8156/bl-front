@@ -10,7 +10,7 @@ import { CommentsComponent } from "../../shared/component/comments/comments.comp
 @Component({
     selector: 'bl-book-blog',
     templateUrl: './bookBlog.component.html',
-    styleUrl: './bookBlog.component.scss',
+    styleUrls: ['./bookBlog.component.scss'],
     standalone: true,
     imports: [CommonModule, CommentsComponent]
 })

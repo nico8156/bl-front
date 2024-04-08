@@ -33,15 +33,15 @@ export const saveBookToDbEffect = createEffect(
       bookInfoService = inject(BookInfoService),
     ) => {
       return actions$.pipe(
-        ofType(bookInfoActions.saveBookToDB),
+        ofType(bookInfoActions.saveBookToDb),
         switchMap(({request}) => {
           return bookInfoService.saveBookToDb(request).pipe(
             map(() => {
-              return bookInfoActions.saveBookToDBSuccess()
+              return bookInfoActions.saveBookToDbSuccess()
             }),
             catchError(() => {
               return of(
-                bookInfoActions.saveBookToDBFailure()
+                bookInfoActions.saveBookToDbFailure()
               )
             })
           )
@@ -53,7 +53,7 @@ export const saveBookToDbEffect = createEffect(
   export const redirectAfterSaveBookToDbEffect = createEffect(
     (actions$ = inject(Actions), router = inject(Router)) => {
       return actions$.pipe(
-        ofType(bookInfoActions.saveBookToDBSuccess),
+        ofType(bookInfoActions.saveBookToDbSuccess),
         tap(() => {
           router.navigateByUrl('/home')
         })

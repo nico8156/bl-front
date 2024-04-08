@@ -15,7 +15,7 @@ import { CreateCommentResponseInterface } from "./types/createCommentResponse.in
 @Component({
     selector:'bl-comments',
     templateUrl:'comments.component.html',
-    styleUrl:'comments.component.scss',
+    styleUrls:['comments.component.scss'],
     standalone: true,
     imports: [CommentFormComponent, CommentComponent, CommonModule],
 })

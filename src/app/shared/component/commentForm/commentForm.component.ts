@@ -5,7 +5,7 @@ import { CreateCommentRequestInterface } from "../comments/types/createCommentRe
 @Component({
     selector: 'bl-comment-form',
     templateUrl: './commentForm.component.html',
-    styleUrl: './commentForm.component.scss',
+    styleUrls: ['./commentForm.component.scss'],
     standalone: true,
     imports: [ReactiveFormsModule]
 })

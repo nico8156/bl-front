@@ -12,7 +12,7 @@ import { CustomValidators } from "../../../shared/validators/custom.validator";
 @Component({
     selector: 'bl-register',
     templateUrl: './register.component.html',
-    styleUrl: 'register.component.scss',
+    styleUrls: ['register.component.scss'],
     standalone: true,
     imports:[ReactiveFormsModule, CommonModule]
 })

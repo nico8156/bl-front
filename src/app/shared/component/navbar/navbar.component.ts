@@ -9,7 +9,7 @@ import { authActions } from "../../../auth/store/actions";
 @Component({
     selector:'bl-navbar',
     templateUrl:'./navbar.component.html',
-    styleUrl:'./navbar.component.scss',
+    styleUrls:['./navbar.component.scss'],
     standalone: true,
     imports:[CommonModule, RouterLink]
 })
@@ -24,7 +24,7 @@ export class NavBarComponent{
 
     logOut(){
        
-       this.store.dispatch(authActions.logOut())
+       this.store.dispatch(authActions.logout())
     }
     
 }

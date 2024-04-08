@@ -11,7 +11,7 @@ import { selectLinks } from "../../shared/component/navlink/store/reducers";
 @Component({
     selector:'bl-booksLib',
     templateUrl:'./booksByLibrary.html',
-    styleUrl:'./booksByLibrary.component.scss',
+    styleUrls:['./booksByLibrary.component.scss'],
     standalone:true,
     imports: [CommonModule, RouterLink]
 })

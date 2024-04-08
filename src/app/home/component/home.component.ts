@@ -12,7 +12,7 @@ import { NavLinkComponent } from "../../shared/component/navlink/navlink.compone
 @Component({
     selector: 'bl-home',
     templateUrl: 'home.component.html',
-    styleUrl:'./home.component.scss',
+    styleUrls:['./home.component.scss'],
     standalone: true,
     imports:[CommonModule, ReactiveFormsModule, FormsModule, RouterLink, NavLinkComponent],
 })

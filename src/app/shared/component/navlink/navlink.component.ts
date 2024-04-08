@@ -15,7 +15,7 @@ import { SaveLibraryRequestInterface } from "./types/saveLibraryRequest.interfac
 @Component({
     selector: 'bl-navlink',
     templateUrl: './navlink.component.html',
-    styleUrl:'./navlink.component.scss',
+    styleUrls:['./navlink.component.scss'],
     standalone: true,
     imports: [CommonModule, RouterLink, RouterLinkActive, ReactiveFormsModule]
 })

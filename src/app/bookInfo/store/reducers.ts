@@ -20,9 +20,9 @@ const bookInfoFeature = createFeature({
             isLoading: false,
             book: action.bookInfo})),
         on(bookInfoActions.getBookInfoFailure, (state) => ({...state, isLoading: false})),
-        on(bookInfoActions.saveBookToDB, (state) => ({...state, isLoading: true})),
-        on(bookInfoActions.saveBookToDBSuccess, (state) => ({...state, isLoading: false})),
-        on(bookInfoActions.saveBookToDBFailure, (state) => ({...state, isLoading: false})),
+        on(bookInfoActions.saveBookToDb, (state) => ({...state, isLoading: true})),
+        on(bookInfoActions.saveBookToDbSuccess, (state) => ({...state, isLoading: false})),
+        on(bookInfoActions.saveBookToDbFailure, (state) => ({...state, isLoading: false})),
         on(routerNavigationAction, () => initialState),
     )
 })

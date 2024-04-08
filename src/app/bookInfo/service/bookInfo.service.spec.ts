@@ -53,7 +53,7 @@ describe('BookInfo Service', () => {
                 expect(res).toEqual(fakeResponse)
             })
 
-            const req = HttpTestingModule.expectOne(`http://localhost:8080/api/book/library/${fakeDataToSave.libraryId}`)
+            const req = HttpTestingModule.expectOne(`http://localhost:9090/api/book/library/${fakeDataToSave.libraryId}`)
             expect(req.request.method).toBe('POST')
             req.flush(fakeResponse)
         })
