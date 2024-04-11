@@ -16,7 +16,7 @@ export class AuthService{
   http= inject(HttpClient)
 
     login(request: LoginRequestInterface): Observable<CurrentUserInterface> {
-      const url = 'http://localhost:9090/api/auth/login'
+      const url = 'http://localhost/api/auth/login'
       
         return this.http
           .post<any>(url, request.user)
@@ -27,7 +27,7 @@ export class AuthService{
     }
     
     register(data: RegisterRequestInterface): Observable<CurrentUserInterface> {
-        const url = 'http://localhost:9090/api/auth/register'
+        const url = 'http://localhost/api/auth/register'
         return this.http
           .post<CurrentUserInterface>(url, data.user)
           .pipe(map((response) => {
@@ -37,7 +37,7 @@ export class AuthService{
       }
 
       getCurrentUser(): Observable<CurrentUserInterface> {
-        const url = 'http://localhost:9090/api/auth/user'
+        const url = 'http://localhost/api/auth/user'
         return this.http
           .get<any>(url)
           .pipe(map((response) => {
@@ -47,7 +47,7 @@ export class AuthService{
         
       }
       update(data: UpdateRequestInterface): Observable<CurrentUserInterface> {
-        const url = 'http://localhost:9090/api/auth/update'
+        const url = 'http://localhost/api/auth/update'
         return this.http
           .patch<any>(url, data.user)
           .pipe(map((response) => {

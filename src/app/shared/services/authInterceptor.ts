@@ -7,7 +7,7 @@ export const authInterceptor: HttpInterceptorFn = (request, next) => {
 
   const persist = inject(PersistanceService)
 
-  if(request.url.startsWith('https://www.googleapis.com/' || 'http://localhost:9090/api/auth/login' || 'http://localhost:9090/api/auth/register')){
+  if(request.url.startsWith('https://www.googleapis.com/' || 'http://localhost/api/auth/login' || 'http://localhost/api/auth/register')){
     return next(request)
   } else {
     const token = persist.get('accessToken')

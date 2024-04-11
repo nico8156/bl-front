@@ -18,7 +18,7 @@ export class CommentsService{
     
     saveComment(request:CreateCommentRequestInterface , googleId: string): Observable<CreateCommentResponseInterface>{
 
-        const url = `http://localhost:9090/api/comment/book/${googleId}`
+        const url = `http://localhost/api/comment/book/${googleId}`
 
         return this.http.post<CreateCommentResponseInterface>(url, request)
         
@@ -26,7 +26,7 @@ export class CommentsService{
 
     getComments(googleId: string){
 
-        const url = `http://localhost:9090/api/comment/book/${googleId}`
+        const url = `http://localhost/api/comment/book/${googleId}`
 
         return this.http.get<CreateCommentResponseInterface[]>(url)
     }

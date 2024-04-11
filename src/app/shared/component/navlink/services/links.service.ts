@@ -15,7 +15,7 @@ export class LinksService{
     store = inject(Store)
 
     getLinks(id: number): Observable<LinksResponseInterface[]>{
-        const url = "http://localhost:9090/api/library"
+        const url = "http://localhost/api/library"
         const fullUrl = url 
         return this.http.get<LinksResponseInterface[]>(fullUrl)
         
@@ -23,20 +23,20 @@ export class LinksService{
     }
     save(request: SaveLibraryRequestInterface): Observable<LinksResponseInterface>{
 
-        const url = `http://localhost:9090/api/library/save`
+        const url = `http://localhost/api/library/save`
         
         return this.http.post<LinksResponseInterface>(url, request.library)
             
     }
     update(request: SaveLibraryRequestInterface, id: number): Observable<LinksResponseInterface>{
 
-        const url = `http://localhost:9090/api/library/update/${id}`
+        const url = `http://localhost/api/library/update/${id}`
 
         return this.http.put<LinksResponseInterface>(url, request.library)
     }
 
     delete(id: number):Observable<any>{
-        const url = `http://localhost:9090/api/library/delete/${id}`
+        const url = `http://localhost/api/library/delete/${id}`
 
         return this.http.delete<LinksResponseInterface>(url)
     }

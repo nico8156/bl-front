@@ -18,7 +18,7 @@ export class BookInfoService{
         return this.http.get<any>(url)
     }
     saveBookToDb(data:SaveBookRequestInterface): Observable<any>{    
-        const url = `http://localhost:9090/api/book/library/${data.libraryId}`
+        const url = `http://localhost/api/book/library/${data.libraryId}`
         return this.http.post<FormatedBookForDb>(url, data.book) 
     }
 }

@@ -11,7 +11,7 @@ export class NavBarService{
 
     getLibraryLinks(userId: string ):any{
 
-        const url = "http://localhost:9090/api/library/user/"
+        const url = "http://localhost/api/library/user/"
         const fullUrl = url + userId
 
         this.http
