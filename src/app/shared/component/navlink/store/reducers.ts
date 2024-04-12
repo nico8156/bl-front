@@ -1,6 +1,7 @@
 import { createFeature, createReducer, on } from "@ngrx/store"
 import { linksActions } from "./actions"
 import { LinksStateInterface } from "../types/linksState.interface"
+import { authActions } from "../../../../auth/store/actions"
 
 export const initialState : LinksStateInterface = {
     isLoading : false,
@@ -27,6 +28,8 @@ const LinksFeature = createFeature({
         on(linksActions.deleteLink, (state) => ({...state, isLoading: true})),
         on(linksActions.deleteLinkSuccess, (state, action) => ({...state, isLoading: false, links: [...state.links.filter(link => link.libraryId !== action.link.libraryId)]})),
         on(linksActions.deleteLinkFailure, (state) => ({...state, isLoading: false})),
+
+        on(authActions.logout, () => initialState)
         
     )
 })

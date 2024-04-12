@@ -2,6 +2,7 @@ import { createFeature, createReducer, on } from "@ngrx/store";
 import { BooksStateInterface } from "../types/getBooksState.interface";
 import { booksActions } from "./actions";
 import { routerNavigationAction } from "@ngrx/router-store";
+import { authActions } from "../../auth/store/actions";
 
 const initialState: BooksStateInterface = {
     isLoading: false,
@@ -20,6 +21,7 @@ const booksFeature = createFeature({
         data: action.books,
       })),
       on(booksActions.getBooksFailure, (state) => ({...state, isLoading: false})),
+      on(authActions.logout, ()=> initialState)
     ),
 })
 

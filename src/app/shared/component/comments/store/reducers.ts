@@ -1,6 +1,7 @@
 import { createFeature, createReducer, on } from "@ngrx/store"
 import { CommentStateInterface } from "../types/createCommentState.interface"
 import { commentsActions } from "./actions"
+import { authActions } from "../../../../auth/store/actions"
 
 export const initialState: CommentStateInterface = {
     isLoading: false,
@@ -23,6 +24,8 @@ const commentFeature = createFeature({
         on(commentsActions.getComments, (state) => ({...state, isLoading: true})),
         on(commentsActions.getCommentsSuccess, (state, action) => ({ ...state, isLoading: false, comments: action.comments})),
         on(commentsActions.getCommentsFailure, (state) => ({...state, isLoading: false})),
+
+        on(authActions.logout, () => initialState)
     )
 })
 
