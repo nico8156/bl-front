@@ -24,6 +24,6 @@ export class AppComponent implements OnInit{
   user$ = this.store.select(selectCurrentUser)
   
   ngOnInit(): void {
-
+    this.store.dispatch(authActions.getCurrentUser())
   }
 }

@@ -37,6 +37,17 @@ export const getCurrentUserEffect = createEffect(
   },
   {functional: true}
 )
+export const redirectAfterGettingUserEffect = createEffect(
+  (actions$ = inject(Actions), router = inject(Router)) => {
+    return actions$.pipe(
+      ofType(authActions.getCurrentUserFailure),
+      tap(() => {
+        router.navigateByUrl('/login')
+      })
+    )
+  },
+  {functional: true, dispatch: false}
+)
 
 
 
