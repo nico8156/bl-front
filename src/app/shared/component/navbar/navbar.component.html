@@ -9,7 +9,7 @@
                     <p [routerLink]="['/user', data.currentUser.username]">{{data.currentUser.username}}</p>
                 </div>
             
-                <img [src]="data.currentUser.photo" alt="">
+                <img [src]="data.currentUser.photo === null ? 'assets/user-icon.png' : data.currentUser.photo" alt="">
                 
                 <button (click)="logOut()" class="log-out-button">Log Out</button>
             </div>

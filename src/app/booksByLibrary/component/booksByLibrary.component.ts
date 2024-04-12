@@ -18,8 +18,6 @@ import { selectLinks } from "../../shared/component/navlink/store/reducers";
 
 export class BooksByLibraryComponent implements OnInit, OnDestroy{
 
-    @Input() libraryId = ''
-
     private routeSubscription!: Subscription;
 
     store = inject(Store)
@@ -42,9 +40,13 @@ export class BooksByLibraryComponent implements OnInit, OnDestroy{
     }
 
     deleteBook(googleId: string){
-        if(this.libraryId){
-            this.store.dispatch(booksByLibActions.deleteBooksFromLib({googleId: googleId, libraryId:Number(this.libraryId)}))
-        }
+        this.routeSubscription = this.route.paramMap.subscribe(params => {
+            const id = params.get('libraryId')
+            console.log(id)
+            if(id != null){
+                this.store.dispatch(booksByLibActions.deleteBooksFromLib({googleId: googleId, libraryId:+id}))
+            }
+        })
         
     }
 
