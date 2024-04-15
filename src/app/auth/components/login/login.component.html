@@ -1,8 +1,8 @@
 <div class="container">
     <h1>S'identifier</h1>
-    <!-- <div *ngIf="data$|async as data">
+    <div *ngIf="data$|async as data">
         <p class="error">{{data.errors?.access_denied_reason}}</p>
-    </div> -->
+    </div>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <fieldset>
             <input type="email" placeholder="Email" formControlName="email">

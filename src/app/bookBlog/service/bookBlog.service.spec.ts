@@ -36,7 +36,7 @@ describe('BookBlog Service', () => {
                 expect(bookFromDB).toEqual(fakeData)
             })
             
-            const req = HttpTestingModule.expectOne(`http://localhost:9090/api/book/${googleId}`)
+            const req = HttpTestingModule.expectOne(`http://localhost/api/book/${googleId}`)
             req.flush(fakeData)
             expect(req.request.method).toBe('GET')
         })

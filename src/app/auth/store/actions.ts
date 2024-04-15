@@ -25,6 +25,8 @@ export const authActions = createActionGroup({
         'Update success': props<{currentUser: CurrentUserInterface}>(),
         'Update failure': props<{errors: BackendErrorsInterface}>(),
 
+        'Clear errors': emptyProps(),
+
         'LogOut':emptyProps()
     }
 })

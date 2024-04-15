@@ -40,7 +40,7 @@ describe('Auth Service', () => {
                 expect(user).toEqual(fakeResponse)
             })
             
-            const req = HttpTestingModule.expectOne('http://localhost:9090/api/auth/login')
+            const req = HttpTestingModule.expectOne('http://localhost/api/auth/login')
             req.flush(fakeResponse)
             expect(req.request.method).toBe('POST')
         })
@@ -55,7 +55,7 @@ describe('Auth Service', () => {
                 registeredUser = response
                 expect(registeredUser).toEqual(fakeResponse)
             })
-            const req = HttpTestingModule.expectOne('http://localhost:9090/api/auth/register')
+            const req = HttpTestingModule.expectOne('http://localhost/api/auth/register')
             req.flush(fakeResponse)
             expect(req.request.method).toBe('POST')
         })
@@ -69,7 +69,7 @@ describe('Auth Service', () => {
                 user = response
                 expect(user).toEqual(fakeResponse)
             })
-            const req = HttpTestingModule.expectOne('http://localhost:9090/api/auth/user')
+            const req = HttpTestingModule.expectOne('http://localhost/api/auth/user')
             req.flush(fakeResponse)
             expect(req.request.method).toBe('GET')
         })
@@ -85,7 +85,7 @@ describe('Auth Service', () => {
                 user = response
                 expect(user).toEqual(fakeResponse)
             })
-            const req = HttpTestingModule.expectOne('http://localhost:9090/api/auth/update')
+            const req = HttpTestingModule.expectOne('http://localhost/api/auth/update')
             req.flush(fakeResponse)
             expect(req.request.method).toBe('PATCH')
         })

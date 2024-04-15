@@ -70,7 +70,7 @@ describe('bookInfoReducer',() => {
         expect(state).toEqual(newState)
     })
     it('save book to DB', ()=> {
-        const action = bookInfoActions.bookInfoActions.saveBookToDB({request: {book:{
+        const action = bookInfoActions.bookInfoActions.saveBookToDb({request: {book:{
             googleId:"string",
             title:"string",
             authors:"string",
@@ -91,7 +91,7 @@ describe('bookInfoReducer',() => {
         expect(state).toEqual(newState)
     })
     it('save book to DB success', ()=> {
-        const action = bookInfoActions.bookInfoActions.saveBookToDBSuccess()
+        const action = bookInfoActions.bookInfoActions.saveBookToDbSuccess()
         const state = bookInfoReducer(initialState, action)
         const newState = {
             isLoading: false,
@@ -101,7 +101,7 @@ describe('bookInfoReducer',() => {
         expect(state).toEqual(newState)
     })
     it('save book to DB failure', ()=> {
-        const action = bookInfoActions.bookInfoActions.saveBookToDBFailure()
+        const action = bookInfoActions.bookInfoActions.saveBookToDbFailure()
         const state = bookInfoReducer(initialState, action)
         const newState = {
             isLoading: false,

@@ -23,7 +23,7 @@ export class NavBarComponent{
     })
 
     logOut(){
-       
+       this.router.navigateByUrl('/login')
        this.store.dispatch(authActions.logout())
     }
     

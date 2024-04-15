@@ -21,7 +21,7 @@ export class AuthService{
         return this.http
           .post<any>(url, request.user)
           .pipe(map((response) => {
-            console.log(response)
+            
             return response
           }))
     }
@@ -31,7 +31,7 @@ export class AuthService{
         return this.http
           .post<CurrentUserInterface>(url, data.user)
           .pipe(map((response) => {
-            console.log(response)
+            
             return response
           }))
       }
@@ -41,7 +41,7 @@ export class AuthService{
         return this.http
           .get<any>(url)
           .pipe(map((response) => {
-            console.log(response)
+            
             return response
           }))
         
@@ -51,11 +51,13 @@ export class AuthService{
         return this.http
           .patch<any>(url, data.user)
           .pipe(map((response) => {
-            console.log(response)
+  
             return response
           }))
       }
       logOut(){
         localStorage.removeItem('accessToken')
       }
+
+      
 }

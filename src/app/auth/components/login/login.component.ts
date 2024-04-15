@@ -3,7 +3,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { LoginRequestInterface } from "../../types/loginRequestInterface";
 import { Store } from "@ngrx/store";
 import { authActions } from "../../store/actions";
-import { combineLatest } from "rxjs";
+import { Observable, Subject, combineLatest, delay, tap } from "rxjs";
 import { selectValidationErrors } from "../../store/reducers";
 import { CommonModule } from "@angular/common";
 
@@ -21,7 +21,9 @@ export class LoginComponent{
     store = inject(Store)
 
     data$ = combineLatest({
-        errors: this.store.select(selectValidationErrors)
+        errors: this.store.select(selectValidationErrors).pipe(
+            tap(() => this.showErrorsForDuration(3000))
+        )   
     })
 
     form = this.fb.nonNullable.group({
@@ -35,4 +37,9 @@ export class LoginComponent{
         }
         this.store.dispatch(authActions.login({request}))
     }
+    private showErrorsForDuration(duration: number): void {
+        setTimeout(() => {
+          this.store.dispatch(authActions.clearErrors());
+        }, duration);
+      }
 }

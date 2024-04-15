@@ -47,13 +47,11 @@ export class BooksByLibraryComponent implements OnInit, OnDestroy{
                 this.store.dispatch(booksByLibActions.deleteBooksFromLib({googleId: googleId, libraryId:+id}))
             }
         })
-        
     }
 
     ngOnDestroy(): void {
         if (this.routeSubscription) {
             this.routeSubscription.unsubscribe();
           }
-    }
-    
+    } 
 }

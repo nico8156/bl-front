@@ -4,6 +4,18 @@
     justify-content: space-around;
     align-items:center;
     border-bottom: 1px solid black;
+    button{
+        border: 1px solid gainsboro;
+        border-radius: 5px;
+        background-color: white;
+        color: gainsboro;
+        padding: 5px 10px;
+    }
+    button:hover{
+        color: grey;
+        border-color: greenyellow;
+        transition-duration: 250ms;
+    }
 }
 .linksWrapper{
     display: flex;
@@ -15,6 +27,7 @@
     cursor: pointer;
     padding: 10px 20px;
     border-radius: 5px;
+
 }
 .library:hover{
     background-color: black;
